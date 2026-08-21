@@ -1,0 +1,137 @@
+{
+  "brand": {
+    "name": "CareerPilot AI",
+    "tagline": "Your Career Journey Starts Here"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "preparation": "Preparation",
+    "learn": "Learn",
+    "company": "Company",
+    "careerPlanning": "Career Planning",
+    "getStarted": "Get Started",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Transform Your Career with AI-Powered Guidance",
+    "subtitle": "Discover personalized career paths, develop industry-relevant skills, and connect with opportunities that match your potential.",
+    "description": "Join thousands of students and professionals who have successfully navigated their career journey with our comprehensive platform.",
+    "primaryButton": "Start Your Journey",
+    "secondaryButton": "Watch Demo",
+    "features": {
+      "aiGuided": "AI-Guided Career Paths",
+      "skillDevelopment": "Skill Development",
+      "jobMatching": "Job Matching",
+      "mentorship": "Expert Mentorship"
+    }
+  },
+  "features": {
+    "tabStudents": "For Students",
+    "tabEmployers": "For Employers",
+    "students": {
+      "title": "Empower Your Future",
+      "description": "Join thousands of students who have successfully navigated their career journey with our platform.",
+      "ctaButton": "Create Free Account",
+      "items": {
+        "careerPaths": {
+          "title": "Personalized Career Paths",
+          "description": "Discover tailored career journeys based on your unique skills, interests, and educational background."
+        },
+        "industrySkills": {
+          "title": "Industry-Aligned Skills",
+          "description": "Learn exactly what employers are looking for with our curated skill development resources."
+        },
+        "vedikTechnics": {
+          "title": "Study by Vedik technics",
+          "description": "Learn the skills you need to succeed with gurukul vedik technics."
+        },
+        "noLanguageBarrier": {
+          "title": "No Language Barrier",
+          "description": "Learn in your preferred language with our multilingual study."
+        },
+        "roleSelection": {
+          "title": "Help to Select Role",
+          "description": "Help to select right role based on your ikigai based assessment and Practical assessment."
+        },
+        "interviewPrep": {
+          "title": "Interview Preparation",
+          "description": "Practice with AI-powered mock interviews tailored to your target roles and industries."
+        },
+        "verifiedOpportunities": {
+          "title": "Verified Opportunities",
+          "description": "Access job listings that have been pre-screened for quality and relevance to students."
+        },
+        "portfolioBuilder": {
+          "title": "Portfolio Builder",
+          "description": "Create an impressive professional portfolio to showcase your projects and skills."
+        }
+      }
+    },
+    "employers": {
+      "title": "Find Perfect Talent",
+      "description": "Connect with motivated students who are specifically training for careers in your industry.",
+      "ctaButton": "Partner With Us",
+      "items": {
+        "talentPipeline": {
+          "title": "Talent Pipeline",
+          "description": "Connect with qualified students who are specifically developing skills for your industry."
+        },
+        "timeSaving": {
+          "title": "Time-Saving Recruiting",
+          "description": "Our matching algorithm identifies students who align with your company culture and needs."
+        },
+        "skillsVerification": {
+          "title": "Skills Verification",
+          "description": "Review student progress and skill certifications to ensure qualification for roles."
+        },
+        "streamlinedOnboarding": {
+          "title": "Streamlined Onboarding",
+          "description": "Hire candidates who are already familiar with your industry requirements and expectations."
+        }
+      }
+    }
+  },
+  "footer": {
+    "description": "Empowering careers through AI-driven guidance and comprehensive skill development.",
+    "quickLinks": "Quick Links",
+    "support": "Support",
+    "legal": "Legal",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved.",
+    "links": {
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "contact": "Contact",
+      "blog": "Blog",
+      "helpCenter": "Help Center",
+      "faq": "FAQ",
+      "guidelines": "Guidelines",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "close": "Close",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "language": "Language"
+  },
+  "languages": {
+    "en": "English",
+    "hi": "हिंदी",
+    "mr": "मराठी"
+  }
+}

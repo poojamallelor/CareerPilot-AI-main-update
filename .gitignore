@@ -1,0 +1,96 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js
+/.next/
+/out/
+/build
+/dist
+
+# Environment variables (CRITICAL - Never commit these!)
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+
+# Production
+/build
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+*.pem
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Custom development files (don't commit these)
+*.bat
+*.ps1
+custom-vscode.css
+PowerShell_Profile.ps1
+
+# Documentation that's auto-generated
+*_STATUS.md
+*_GUIDE.md
+*_COMPLETE.md
+*_RESOLUTION.md
+MULTI_PROJECT_STATUS.md
+ERROR_RESOLUTION_COMPLETE.md
+INTEGRATION_COMPLETE.md
+
+# Temporary files
+temp/
+.cache/
+*.tmp
+
+# Note: Previously ignored nested repo folder. We now allow selected subfolders to be tracked.
+# If you want to keep ignoring everything under CareerPilot-AI by default, uncomment the next line
+# CareerPilot-AI/
+# But explicitly include these module directories:
+!CareerPilot-AI/CareerPilot-AI-main/
+!CareerPilot-AI/Online-Meet/
+!CareerPilot-AI/Softskills-Grammar/
+
+# clerk configuration (can include secrets)
+/.clerk/

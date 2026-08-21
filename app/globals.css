@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@layer base {
+  :root {
+    /* Prime Royal Purple & Lavender Mist Theme - Light Mode */
+    --background: 270 50% 99%;
+    /* Crisp Lavender White #faf8ff */
+    --foreground: 265 40% 10%;
+    /* Deep Velvet Navy/Indigo #191024 */
+
+    --card: 0 0% 100%;
+    /* Pure Crisp White */
+    --card-foreground: 265 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 265 40% 10%;
+
+    --primary: 270 91% 55%;
+    /* Royal Violet/Purple #8b5cf6 / #7c3aed */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 270 60% 96%;
+    /* Soft Lavender Cream #f5f0ff */
+    --secondary-foreground: 270 90% 35%;
+
+    --muted: 270 30% 96%;
+    --muted-foreground: 265 20% 45%;
+
+    --accent: 285 85% 58%;
+    /* Radiant Fuchsia/Orchid Glow #c026d3 */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 270 40% 90%;
+    /* Subtle Purple-tinted border */
+    --input: 270 40% 90%;
+    --ring: 270 91% 55%;
+
+    --radius: 1rem;
+    /* 16px soft rounded cards */
+
+    --text-primary: 265 40% 10%;
+    --text-secondary: 265 20% 45%;
+    --accent-color: 270 91% 55%;
+    --card-bg: 0 0% 100%;
+    --border-color: 270 40% 90%;
+    --shadow: 0 12px 32px -6px rgba(124, 58, 237, 0.12), 0 6px 14px -4px rgba(147, 51, 234, 0.07);
+    --nav-bg: 0 0% 100%;
+    --nav-text: 265 40% 10%;
+    --header-bg: 0 0% 100%;
+    --body-bg: 270 50% 99%;
+  }
+
+  [data-theme="dark"],
+  .dark {
+    /* Obsidian Amethyst Dark & Radiant Purple Glow - Dark Mode */
+    --background: 265 45% 5%;
+    /* Deep Amethyst Black #0a0614 */
+    --foreground: 270 40% 98%;
+    /* Crisp Pure White #faf7ff */
+
+    --card: 265 40% 9%;
+    /* Dark Amethyst Card #130c24 */
+    --card-foreground: 270 40% 98%;
+
+    --popover: 265 40% 9%;
+    --popover-foreground: 270 40% 98%;
+
+    --primary: 270 91% 65%;
+    /* Vivid Radiant Violet #a855f7 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 265 35% 15%;
+    /* Deep Purple Slate #22153b */
+    --secondary-foreground: 270 40% 98%;
+
+    --muted: 265 35% 15%;
+    --muted-foreground: 265 20% 70%;
+
+    --accent: 285 85% 62%;
+    /* Orchid Glow #d946ef */
+    --accent-foreground: 265 45% 5%;
+
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 270 40% 98%;
+
+    --border: 265 30% 20%;
+    /* Dark Amethyst Border #2c1c4d */
+    --input: 265 30% 20%;
+    --ring: 270 91% 65%;
+
+    --text-primary: 270 40% 98%;
+    --text-secondary: 265 20% 70%;
+    --accent-color: 270 91% 65%;
+    --card-bg: 265 40% 9%;
+    --border-color: 265 30% 20%;
+    --shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.95), 0 0 25px 0 rgba(168, 85, 247, 0.22);
+    --nav-bg: 265 45% 6%;
+    --nav-text: 270 40% 98%;
+    --header-bg: 265 45% 6%;
+    --body-bg: 265 45% 5%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: hsl(var(--body-bg));
+  }
+
+  nav {
+    background-color: hsl(var(--nav-bg));
+    color: hsl(var(--nav-text));
+  }
+}
+
+/* Glassmorphism & Purple Aesthetics */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(147, 51, 234, 0.15);
+}
+
+.dark .glass-panel {
+  background: rgba(19, 12, 36, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(147, 51, 234, 0.12);
+}
+
+.dark .glass-nav {
+  background: rgba(10, 6, 20, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(168, 85, 247, 0.18);
+}
+
+/* Radiant Purple Gradient Text */
+.purple-gradient-text,
+.orange-gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #c026d3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .purple-gradient-text,
+.dark .orange-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #e9d5ff 45%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glowing Card & Hover Animations */
+.glow-card {
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(192, 38, 211, 0.2), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.glow-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+.glow-card:hover::after {
+  opacity: 1;
+}
+
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -12px rgba(124, 58, 237, 0.25);
+  border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.9), 0 0 25px 0 rgba(168, 85, 247, 0.35);
+  border-color: rgba(192, 132, 252, 0.6) !important;
+}
+
+/* Modern Card Defaults */
+.card {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(147, 51, 234, 0.5);
+  box-shadow: 0 20px 40px -10px rgba(147, 51, 234, 0.2), 0 0 20px 0 rgba(147, 51, 234, 0.15);
+}
+
+.dark .card:hover {
+  border-color: rgba(168, 85, 247, 0.6);
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.95), 0 0 25px 0 rgba(168, 85, 247, 0.3);
+}
+
+/* Primary Button Styling */
+.btn-primary,
+.btn-gradient {
+  background: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #a855f7 100%);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: var(--radius);
+  padding: 0.875rem 1.75rem;
+  box-shadow: 0 6px 22px -3px rgba(124, 58, 237, 0.5);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover,
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 50%, #9333ea 100%);
+  box-shadow: 0 10px 32px -4px rgba(147, 51, 234, 0.7);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active,
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Shimmer Button Effect */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.75s ease;
+}
+
+.btn-shimmer:hover::before {
+  left: 100%;
+}
+
+/* Grid Mesh Background Pattern */
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image:
+    linear-gradient(to right, rgba(147, 51, 234, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(147, 51, 234, 0.07) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(168, 85, 247, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.09) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.45);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.85);
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 3.5s ease-in-out 1.75s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* Dark mode text safeguards */
+.dark body {
+  color: #faf7ff;
+}
+
+.dark h1,
+.dark h2,
+.dark h3 {
+  color: #faf7ff;
+}
+
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700 {
+  color: #f3e8ff;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: #d8b4fe;
+}
+
+.dark .text-gray-400 {
+  color: #c084fc;
+}

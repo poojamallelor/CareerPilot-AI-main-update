@@ -1,0 +1,322 @@
+import {
+  AlertCircle,
+  Book,
+  Calendar,
+  Clock,
+  Filter,
+  Heart,
+  RefreshCw,
+  Search,
+  Sparkles,
+  User,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { AiCourseContent } from "../../../lib/aiService";
+
+const CreateCourse = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    generateAICourses();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const generateAICourses = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const prompt = `Generate a JSON array of 12 diverse online courses for students. Each course should have:
+      - course_name: Modern, relevant course title
+      - student_name: Indian student name (instructor)
+      - course_level: "Beginner", "Intermediate", or "Advanced"
+      - time_required: Duration like "3 weeks", "5 weeks", etc.
+      - branch: Technology field like "Computer Science", "Data Science", "Web Development", "AI/ML", "Cybersecurity", "Cloud Computing", "Mobile Development", "DevOps", etc.
+      - create_date: Recent date in YYYY-MM-DD format
+      - likes: Random number between 75-200
+
+      Make sure to include courses from different technology branches and skill levels. Return only valid JSON array format.`;
+
+      console.log('🤖 Making AI request for course generation...');
+      const result = await AiCourseContent.sendMessage(prompt);
+      const responseText = result.response.text();
+
+      console.log('🤖 AI Response received:', responseText.substring(0, 200) + '...');
+
+      // Try to parse JSON from the response
+      let parsedCourses;
+      try {
+        // Remove any markdown formatting if present
+        const cleanedResponse = responseText.replace(/```json\n?/g, '').replace(/```/g, '').trim();
+        parsedCourses = JSON.parse(cleanedResponse);
+
+        if (Array.isArray(parsedCourses) && parsedCourses.length > 0) {
+          console.log('✅ Successfully parsed AI-generated courses:', parsedCourses.length);
+          setCourses(parsedCourses);
+        } else {
+          throw new Error('Invalid course structure from AI');
+        }
+      } catch (parseError) {
+        console.warn('⚠️ JSON parse failed, using enhanced fallback courses');
+        setCourses(getEnhancedFallbackCourses());
+        setError('Using sample courses. Enable AI for dynamic content.');
+      }
+
+    } catch (error) {
+      console.error('❌ Error generating courses:', error);
+      setError('AI service temporarily unavailable. Showing sample courses.');
+      setCourses(getEnhancedFallbackCourses());
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getEnhancedFallbackCourses = () => [
+    {
+      course_name: "🐍 Python Programming Fundamentals",
+      student_name: "Aarav Sharma",
+      course_level: "Beginner",
+      time_required: "4 weeks",
+      branch: "Computer Science",
+      create_date: "2025-03-15",
+      likes: 120,
+    },
+    {
+      course_name: "⚛️ React & Next.js Mastery",
+      student_name: "Sneha Iyer",
+      course_level: "Intermediate",
+      time_required: "6 weeks",
+      branch: "Web Development",
+      create_date: "2025-04-01",
+      likes: 152,
+    },
+    {
+      course_name: "🤖 Machine Learning with Python",
+      student_name: "Rohan Desai",
+      course_level: "Advanced",
+      time_required: "8 weeks",
+      branch: "Artificial Intelligence",
+      create_date: "2025-01-20",
+      likes: 200,
+    },
+    {
+      course_name: "☁️ AWS Cloud Architecture",
+      student_name: "Ananya Reddy",
+      course_level: "Intermediate",
+      time_required: "5 weeks",
+      branch: "Cloud Computing",
+      create_date: "2025-03-25",
+      likes: 187,
+    },
+    {
+      course_name: "🔒 Cybersecurity Essentials",
+      student_name: "Kunal Verma",
+      course_level: "Beginner",
+      time_required: "3 weeks",
+      branch: "Cybersecurity",
+      create_date: "2025-02-18",
+      likes: 99,
+    },
+    {
+      course_name: "📊 Data Science Analytics",
+      student_name: "Priya Singh",
+      course_level: "Advanced",
+      time_required: "7 weeks",
+      branch: "Data Science",
+      create_date: "2025-03-10",
+      likes: 165,
+    },
+  ];
+
+  // Filter courses based on search term and level
+  const filteredCourses = courses.filter((item) => {
+    return (
+      item.course_name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedLevel === "" || item.course_level === selectedLevel)
+    );
+  });
+
+  // Get background color based on course level
+  const getLevelColor = (level) => {
+    switch (level) {
+      case "Beginner":
+        return "bg-green-100 text-green-800";
+      case "Intermediate":
+        return "bg-blue-100 text-blue-800";
+      case "Advanced":
+        return "bg-purple-100 text-purple-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="p-6 max-w-6xl mx-auto bg-gray-50 mt-10">
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-gray-600 flex items-center text-lg">
+            <Sparkles className="mr-2 text-blue-500 animate-pulse" size={20} />
+            🤖 AI is generating personalized courses for you...
+          </p>
+          <p className="text-sm text-gray-500 mt-2">This may take a few seconds</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 max-w-6xl mx-auto bg-gray-50 mt-10">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+        <div className="flex items-center mb-4 md:mb-0">
+          <h2 className="text-3xl font-bold text-gray-800 mr-3">
+            ✨ AI-Generated Courses
+          </h2>
+          <Sparkles className="text-blue-500" size={24} />
+        </div>
+
+        <div className="flex flex-col sm:flex-row w-full md:w-auto gap-4">
+          {/* Regenerate Button */}
+          <button
+            onClick={generateAICourses}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
+            disabled={loading}
+          >
+            <RefreshCw
+              className={`mr-2 ${loading ? 'animate-spin' : ''}`}
+              size={18}
+            />
+            🔄 Regenerate
+          </button>
+
+          {/* Search Input */}
+          <div className="relative flex-grow">
+            <input
+              type="text"
+              placeholder="Search courses..."
+              className="pl-10 pr-4 py-2 rounded-lg border border-gray-300 w-full"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Search
+              className="absolute left-3 top-2.5 text-gray-400"
+              size={18}
+            />
+          </div>
+
+          {/* Filter Dropdown */}
+          <div className="relative flex-grow sm:flex-grow-0">
+            <select
+              className="pl-10 pr-4 py-2 rounded-lg border border-gray-300 appearance-none w-full bg-white"
+              value={selectedLevel}
+              onChange={(e) => setSelectedLevel(e.target.value)}
+            >
+              <option value="">All Levels</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+            <Filter
+              className="absolute left-3 top-2.5 text-gray-400"
+              size={18}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Error Message */}
+      {error && (
+        <div className="mb-6 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg">
+          <p className="flex items-center">
+            <AlertCircle className="mr-2" size={20} />
+            {error}
+          </p>
+        </div>
+      )}
+
+      {/* Course Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {filteredCourses.map((course, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-100"
+          >
+            {/* Course Header with color based on level */}
+            <div
+              className={`px-4 py-3 ${getLevelColor(
+                course.course_level
+              )} flex justify-between items-center`}
+            >
+              <span className="font-medium">{course.course_level}</span>
+              <span className="flex items-center">
+                <Heart className="mr-1" size={16} />
+                {course.likes}
+              </span>
+            </div>
+
+            {/* Course Content */}
+            <div className="p-5">
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {course.course_name}
+              </h3>
+
+              <div className="space-y-2 text-gray-600">
+                <div className="flex items-center">
+                  <User className="mr-2 text-gray-400" size={16} />
+                  <span>{course.student_name}</span>
+                </div>
+
+                <div className="flex items-center">
+                  <Book className="mr-2 text-gray-400" size={16} />
+                  <span>{course.branch}</span>
+                </div>
+
+                <div className="flex items-center">
+                  <Clock className="mr-2 text-gray-400" size={16} />
+                  <span>{course.time_required}</span>
+                </div>
+
+                <div className="flex items-center">
+                  <Calendar className="mr-2 text-gray-400" size={16} />
+                  <span>{course.create_date}</span>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <button
+                onClick={() => {
+                  window.location.href = "/learn/course/start";
+                }}
+                className="mt-5 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg font-medium transition-colors duration-300"
+              >
+                📚 Enroll Now
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Show message when no courses match filters */}
+      {filteredCourses.length === 0 && !loading && (
+        <div className="text-center py-8 text-gray-500">
+          <AlertCircle className="mx-auto mb-2" size={48} />
+          <p>No courses match your search criteria.</p>
+          <p>Try different keywords or filters.</p>
+        </div>
+      )}
+
+      {/* Footer Info */}
+      <div className="mt-8 p-4 bg-blue-50 rounded-lg text-center">
+        <p className="text-blue-700">
+          🤖 <strong>AI-Powered Course Generation:</strong> These courses are dynamically generated using Google Gemini AI
+          based on current industry trends and educational requirements.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default CreateCourse;
