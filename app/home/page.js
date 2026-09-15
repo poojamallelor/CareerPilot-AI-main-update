@@ -204,7 +204,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-            <ChatBot />
           </div>
         </div>
       </div>

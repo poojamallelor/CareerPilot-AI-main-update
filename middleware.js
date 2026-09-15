@@ -12,7 +12,13 @@ const isPublicRoute = createRouteMatcher([
   '/careerplanning(.*)',
   '/job-board(.*)',
   '/learn(.*)',
-  '/api/gemini/(.*)',
+  '/preparation(.*)',
+  '/assessment(.*)',
+  '/company(.*)',
+  '/api/gemini(.*)',
+  '/api/assessment(.*)',
+  '/api/chat(.*)',
+  '/api/execute-code(.*)',
   '/students(.*)'
 ]);
 

@@ -31,12 +31,7 @@ const LearnContent = () => {
   const Component =
     componentMap[page_name] ||
     dynamic(() => import("../components/Instruction"));
-  return (
-    <>
-      <Component />
-      <ChatBot />
-    </>
-  );
+  return <Component />;
 };
 
 const ParamsPage = () => {

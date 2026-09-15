@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import { ThemeContext } from "../components/ThemeContext";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
-import { Globe, GraduationCap, Rocket, Trophy, Building, Lightbulb, Laptop, ExternalLink } from "lucide-react";
+import { Globe, GraduationCap, Rocket, Trophy, Building, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 const features = [
@@ -40,20 +40,6 @@ const features = [
     icon: Building,
     href: "/company/mnc-careers",
     external: false
-  },
-  {
-    title: "Startup Companies",
-    description: "Database of hiring startups - curated list with details",
-    icon: Lightbulb,
-    href: "https://drive.google.com/drive/folders/1kpMh9S6pEgfMMD2UOSeAmgx9Y-0HYFoj",
-    external: true
-  },
-  {
-    title: "Remote Work Companies",
-    description: "Companies offering remote positions - global opportunities",
-    icon: Laptop,
-    href: "https://docs.google.com/spreadsheets/d/1m8zZ3Rz2LMwe707XfN9SkDG89AP5W1QE/edit?usp=drivesdk",
-    external: true
   }
 ];
 

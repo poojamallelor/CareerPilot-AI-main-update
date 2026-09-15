@@ -22,12 +22,7 @@ const PreparationContent = () => {
   const Component =
     componentMap[page_name] ||
     dynamic(() => import("./components/ModernAssessmentPortal"));
-  return (
-    <>
-      <Component />
-      <ChatBot />
-    </>
-  );
+  return <Component />;
 };
 
 const ParamsPage = () => {

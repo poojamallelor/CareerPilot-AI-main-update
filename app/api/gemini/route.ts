@@ -1,8 +1,12 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Security: removed hardcoded API key. Use .env.local only.
-const apiKey = process.env.GOOGLE_GEMINI_API_KEY;
+// Security: use .env.local only.
+const apiKey =
+  process.env.GOOGLE_GEMINI_API_KEY ||
+  process.env.GOOGLE_GENAI_API_KEY ||
+  process.env.GEMINI_API_KEY ||
+  process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
 // Basic environment diagnostics (non-sensitive)
 console.log('Gemini env check:', {
@@ -12,7 +16,7 @@ console.log('Gemini env check:', {
 });
 
 // Validate API key format (length heuristic only)
-const isValidApiKey = !!apiKey && apiKey.length > 30;
+const isValidApiKey = !!apiKey && apiKey.length > 20;
 if (!isValidApiKey) {
   console.warn('Gemini: Fallback mode (no valid API key). Set GOOGLE_GEMINI_API_KEY in .env.local');
 }

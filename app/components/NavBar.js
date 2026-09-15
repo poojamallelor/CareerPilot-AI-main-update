@@ -52,8 +52,6 @@ function NavBar() {
         { name: "Internship Platforms", href: "/company/internship-platforms" },
         { name: "Hiring Challenges", href: "/company/hiring-challenges" },
         { name: "MNC Career Portals", href: "/company/mnc-careers" },
-        { name: "Startup Database", href: "https://drive.google.com/drive/folders/1kpMh9S6pEgfMMD2UOSeAmgx9Y-0HYFoj", external: true },
-        { name: "Remote Hiring", href: "https://docs.google.com/spreadsheets/d/1m8zZ3Rz2LMwe707XfN9SkDG89AP5W1QE/edit?usp=drivesdk", external: true },
       ],
     },
   ];
